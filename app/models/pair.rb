@@ -4,7 +4,6 @@ class Pair < ActiveRecord::Base
   belongs_to :challenge
 
   validates :challenge_id, presence: true
-  validates :time_slot_id, presence: true
-  validates :
+  validates :timeslot_id, presence: true
 
 end

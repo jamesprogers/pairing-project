@@ -1,19 +1,43 @@
 <div class="site-styles">
+  <%= erb :'/partial/_errors'%>
 
-  <h2>Select Your Available Times</h2>
-  <form class="" action="/student_time_slot" method="post">
-    <table>
-      <% @time_slots.each do |time_slot| %>
-        <tr>
-          <td>
-            <p><%= time_slot.to_s %></p>
-          </td>
-          <td>
-            <input type="checkbox" name="time_slot_<%=time_slot.id%>" value="<%=time_slot.id%>"> Are you free at this hour? </label>
-          </td>
-      <% end %>
-      <input type="submit" value="Submit Availability">
-    </table>
+  <form class="" action="/student_timeslot" method="post">
+    <div class="name field">
+      <h2>What's Your Name?</h2>
+        <label for="name"></label>
+        <input type="text" id="name" name="student">
+    </div>
+    <div class="challenges">
+      <h2>Which Challenge would you like to work on? (select one)</h2>
+      <table>
+        <% @challenges.each do |challenge| %>
+          <tr>
+            <td>
+              <p><%= challenge.name %></p>
+            </td>
+            <td>
+              <input type="checkbox" name="challenge" value="<%=challenge.id%>">
+            </td>
+        <% end %>
+      </table>
+    </div>
+    <div class="available-times">
+      <h2>Select Your Available Times</h2>
+      <table>
+        <% @time_slots.each do |time_slot| %>
+          <tr>
+            <td>
+              <p><%= time_slot.to_s %></p>
+            </td>
+            <td>
+              <input id="time-slot" type="checkbox" name="time_slot_<%=time_slot.id%>" value="<%=time_slot.id%>">
+              <label for="time-slot">Are you free at this hour?</label>
+            </td>
+        <% end %>
+        <input type="submit" value="Submit Availability">
+      </table>
+
+    </div>
 
   </form>
 

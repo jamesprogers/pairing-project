@@ -1,6 +1,6 @@
-class TimeSlots < ActiveRecord::Migration
+class Timeslots < ActiveRecord::Migration
   def change
-    create_table :time_slots do |t|
+    create_table :timeslots do |t|
       t.time :time, null: false
 
       t.timestamps
