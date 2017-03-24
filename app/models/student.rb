@@ -1,11 +1,18 @@
 class Student < ActiveRecord::Base
-  has_many :time_slots, through: :student_time_slot
-  has_many :completed_challenges, through: :challenges_students, foreign_key: :challenge_id
+  has_many :timeslots, through: :student_timeslot
+  belongs_to :challenge
   has_many :pairs, through: :pairs_students
 
-  validates :name, precense: true
 
-  def pairs
+  validates :name, presence: true, uniqueness: true
+  validates :challenge_id, presence: true
 
+  def matching_challenge(student)
+    self.challenge == student.challenge
   end
+
+  def matching_time(student)
+    matching_timeslots = self.timeslots & student.timeslots
+  end
+
 end

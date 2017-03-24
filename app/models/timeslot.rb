@@ -1,4 +1,4 @@
-class TimeSlot < ActiveRecord::Base
+class Timeslot < ActiveRecord::Base
   validates :time, presence: true
 
   def eastern_time
@@ -8,4 +8,5 @@ class TimeSlot < ActiveRecord::Base
   def to_s
     eastern_time.strftime("%l %p" )
   end
+
 end
