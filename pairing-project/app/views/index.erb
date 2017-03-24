@@ -1,0 +1,21 @@
+<div class="site-styles">
+
+  <h2>Select Your Available Times</h2>
+  <form class="" action="/student_time_slot" method="post">
+    <table>
+      <% @time_slots.each do |time_slot| %>
+        <tr>
+          <td>
+            <p><%= time_slot.to_s %></p>
+          </td>
+          <td>
+            <input type="checkbox" name="time_slot_<%=time_slot.id%>" value="<%=time_slot.id%>"> Are you free at this hour? </label>
+          </td>
+      <% end %>
+      <input type="submit" value="Submit Availability">
+    </table>
+
+  </form>
+
+
+</div>
