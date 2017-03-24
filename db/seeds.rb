@@ -11,3 +11,15 @@ challenges = {"JavaScript Roman Numerals" => "Distillery try-hard direct trade p
 challenges.each do |k,v|
   Challenge.create(name: k, description: v)
 end
+
+5.times do
+  Student.create(
+    name: Faker::Name.first_name,
+    challenge_id: rand(4)
+
+    )
+end
+
+15.times do
+  StudentTimeslot.create(student_id: rand(5), timeslot_id: rand(24))
+end

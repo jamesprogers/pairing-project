@@ -26,3 +26,7 @@ end
 get '/pairs' do
   erb :pairs
 end
+
+post '/pairs' do
+  
+end

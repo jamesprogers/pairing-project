@@ -12,7 +12,7 @@ class Student < ActiveRecord::Base
   end
 
   def matching_time(student)
-    matching_timeslots = self.timeslots & student.timeslots
+    self.timeslots & student.timeslots
   end
 
 end
