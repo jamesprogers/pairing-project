@@ -12,9 +12,13 @@ post '/student_timeslot' do
   else
     @student = Student.find_by(name: params[:student])
   end
-  session[:student_id] = @Student.id
+  session[:student_id] = @student.id
   params.each do |k,v|
     if k != "student"
+      if StudentTimeslot.ids_by_student(@student.id)
+        binding.pry
+        StudentTimeslot.destroy(StudentTimeslot.ids_by_student(@student.id))
+      end
       StudentTimeslot.create(student_id: @student.id, timeslot_id: v.to_i)
     end
   end
@@ -24,9 +28,10 @@ post '/student_timeslot' do
 end
 
 get '/pairs' do
+  @students = Student.all
   erb :pairs
 end
 
 post '/pairs' do
-  
+
 end

@@ -1,5 +1,7 @@
 class Timeslot < ActiveRecord::Base
   validates :time, presence: true
+  has_many :student_timeslots
+  has_many :students, through: :student_timeslot
 
   def eastern_time
     self.time - (60*60*4)
