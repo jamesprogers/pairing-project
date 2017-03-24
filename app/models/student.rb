@@ -1,5 +1,6 @@
 class Student < ActiveRecord::Base
-  has_many :timeslots, through: :student_timeslot
+  has_many :student_timeslots
+  has_many :timeslots, through: :student_timeslots
   belongs_to :challenge
   has_many :pairs, through: :pairs_students
 
@@ -11,8 +12,15 @@ class Student < ActiveRecord::Base
     self.challenge == student.challenge
   end
 
-  def matching_time(student)
-    matching_timeslots = self.timeslots & student.timeslots
+  def available_times
+    self.timeslots.map do |timeslot|
+      timeslot.time
+    end
   end
+
+  def matching_time(student)
+    self.available_times & student.available_times
+  end
+
 
 end

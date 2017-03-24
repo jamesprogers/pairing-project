@@ -7,9 +7,17 @@
     <% @students.each do |student| %>
       <tr>
         <td>
-          <% if current_student.matching_challenge(student) %>
+          <% if student != current_student && current_student.matching_challenge(student) && !current_student.matching_time(student).empty? %>
+            <% student.timeslots.each do |timeslot| %>
+              <form class="" action="/pairs" method="post">
+                <label for="potential-pair"><%= student.name %> is available at <%= Timeslot.find(timeslot).to_s %> to pair on the <%= student.challenge.name %> challenge </label>
+                <input id="potential-pair"type="checkbox" name="pair-student" value="<%= student.id %>">
+              </form>
+            <% end %>
+          <% end %>
         </td>
       </tr>
+    <% end %>
   </table>
 
 
